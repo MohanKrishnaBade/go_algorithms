@@ -2,12 +2,18 @@ package main
 
 import (
 	"fmt"
-	"../../Sort/Healper"
+	"../../Helper"
 )
 
 func main() {
 
-	slice := Healper.GenerateSlice(20)
+	info := Healper.StdInputInfo{
+		Message: Healper.RADOM_ARRAY_LENGTH_MESSAGE,
+	}
+
+	Healper.StandardInput(&info)
+
+	slice := Healper.GenerateSlice(info.Int2)
 	fmt.Println("\n--- Unsorted --- \n\n", slice)
 	bubblesort(slice)
 	fmt.Println("\n--- Sorted ---\n\n", slice, "\n")

@@ -1,14 +1,22 @@
 package main
 
 import (
-	"../Healper"
+	"../../Helper"
 	"fmt"
 )
 
 func main() {
-	array := Healper.GenerateSlice(10)
-	selectionSort(array)
-	fmt.Println(array)
+	info := Healper.StdInputInfo{
+		Message: Healper.RADOM_ARRAY_LENGTH_MESSAGE,
+	}
+
+	Healper.StandardInput(&info)
+
+	slice := Healper.GenerateSlice(info.Int2)
+
+	fmt.Println("\n--- Unsorted --- \n\n", slice)
+	selectionSort(slice)
+	fmt.Println("\n--- Sorted ---\n\n", slice, "\n")
 
 }
 

@@ -2,11 +2,23 @@ package main
 
 import (
 	"fmt"
+	"../../../go_algorithms/Helper"
 )
 
 func main() {
-	items := []int{1, 2, 9, 20, 31, 45, 63, 70, 100}
-	fmt.Println(binarySearch(80, items))
+
+	info := Healper.StdInputInfo{
+		Message: Healper.RADOM_ARRAY_LENGTH_MESSAGE,
+	}
+
+	Healper.StandardInput(&info)
+	items := Healper.GenerateSlice(info.Int2)
+
+	info.Message = Healper.LUCKY_NUMBER_MESSAGE
+	Healper.StandardInput(&info)
+
+	fmt.Println(binarySearch(info.Int2, items))
+
 }
 
 func binarySearch(key int, data []int) bool {

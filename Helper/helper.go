@@ -3,7 +3,10 @@ package Healper
 import (
 	"math/rand"
 	"time"
+	"fmt"
+	"log"
 )
+
 
 func GenerateSlice(len int) []int {
 
@@ -15,4 +18,13 @@ func GenerateSlice(len int) []int {
 	}
 
 	return slice;
+}
+
+func StandardInput(info *StdInputInfo) {
+	fmt.Print(info.Message)
+	_, err := fmt.Scanf("%d", &info.Int2)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }

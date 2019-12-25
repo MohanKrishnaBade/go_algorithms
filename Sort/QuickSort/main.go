@@ -1,13 +1,22 @@
 package main
 
 import (
-	"../Healper"
+	"../../Helper"
 	"fmt"
 	"math/rand"
 )
 
 func main() {
-	fmt.Println(quickSort(Healper.GenerateSlice(4)))
+	info := Healper.StdInputInfo{
+		Message: Healper.RADOM_ARRAY_LENGTH_MESSAGE,
+	}
+
+	Healper.StandardInput(&info)
+
+	slice := Healper.GenerateSlice(info.Int2)
+	fmt.Println("\n--- Unsorted --- \n\n", slice)
+	quickSort(slice)
+	fmt.Println("\n--- Sorted ---\n\n", slice, "\n")
 
 }
 
