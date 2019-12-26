@@ -3,6 +3,7 @@ package main
 import (
 	"../../Helper"
 	"fmt"
+	"runtime"
 )
 
 func main() {
@@ -17,6 +18,7 @@ func main() {
 	fmt.Println("\n--- Unsorted --- \n\n", slice)
 	selectionSort(slice)
 	fmt.Println("\n--- Sorted ---\n\n", slice, "\n")
+	fmt.Println(runtime.NumCPU())
 
 }
 
