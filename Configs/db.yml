@@ -1,0 +1,6 @@
+default_connection:
+  db: "mysql"
+  userName: "root"
+  password: "r00tmysql"
+  host: "tcp(127.0.0.1)"
+  database: "test"

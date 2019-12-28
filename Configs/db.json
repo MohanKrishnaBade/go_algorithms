@@ -1,0 +1,12 @@
+{
+  "databases": [
+    {
+      "driverName": "mysql",
+      "userName": "root",
+      "password": "r00tmysql",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "dbName": "test"
+    }
+  ]
+}

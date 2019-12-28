@@ -1,4 +1,4 @@
-package main
+package CurrentTime
 
 import (
 	"time"
@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func printTimeCmd() *cobra.Command {
+func PrintTimeCmd() *cobra.Command {
 	return &cobra.Command{
 		Use: "curtime",
 		RunE: func(cmd *cobra.Command, args []string) error {
