@@ -7,6 +7,7 @@ import (
 	c "../../go_algorithms/Commands/CurrentTime"
 	"../../go_algorithms/Commands/JsonToObject"
 	"../../go_algorithms/Connections"
+	"../../go_algorithms/Commands/DbCommands"
 )
 
 func init() {
@@ -32,6 +33,7 @@ func main() {
 
 	cmd.AddCommand(c.PrintTimeCmd())
 	cmd.AddCommand(JsonToObject.GetObject())
+	cmd.AddCommand(DbCommands.Connection())
 
 	if err := cmd.Execute(); err != nil {
 		os.Exit(1)

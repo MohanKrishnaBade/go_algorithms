@@ -27,7 +27,7 @@ type Database struct {
 func getConfig() Databases {
 
 	// Open our jsonFile
-	jsonFile, err := os.Open("/Applications/coding/go/go_algorithms/Configs/db.json")
+	jsonFile, err := os.Open(DB_FILE_NAME)
 	// if we os.Open returns an error then handle it
 	if err != nil {
 		fmt.Println(err)
@@ -52,8 +52,8 @@ func getConfig() Databases {
 func (Databases) EstablishConnection(database Database) (*sql.DB, error) {
 
 	//set defaults..
-	if database.DbName == "" {
-		database.DbName = TEXT_DEFAULT_CONNECTION
+	if database.DbName == "" && database.DriverName == "" {
+		database.setDefaults()
 	}
 
 	databasesList := getConfig();
@@ -66,33 +66,15 @@ func (Databases) EstablishConnection(database Database) (*sql.DB, error) {
 		if databasesList.Databases[i].DbName == database.DbName {
 			dbInfo := databasesList.Databases[i]
 			query := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", dbInfo.UserName, dbInfo.Password, dbInfo.Host, dbInfo.Port, dbInfo.DbName)
-			db, err := sql.Open("mysql", query)
+			db, err := sql.Open(dbInfo.DriverName, query)
 			return db, err;
 		}
 	}
 
-	panic("something went wrong!!!")
+	panic("DB connection went wrong, please check the connection settings!!!")
 }
 
-//func GetConfig() {
-//
-//	data, err := ioutil.ReadFile("/Applications/coding/go/go_algorithms/Configs/db.yml")
-//	if err != nil {
-//		log.Printf("yamlFile.Get err   #%v ", err)
-//	}
-//	var v interface{}
-//	err = yaml.Unmarshal(data, &v)
-//	if err != nil {
-//		log.Printf("unmarshal err   #%v ", err)
-//	}
-//
-//	var DbInfo = make(map[string]string)
-//	for key, value := range v.(map[interface{}]interface{}) {
-//
-//		if key == TEXT_DEFAULT_CONNECTION {
-//			for k, v := range value.(map[interface{}]interface{}) {
-//
-//			}
-//		}
-//	}
-//}
+func (d *Database) setDefaults() {
+	d.DriverName = "mysql"
+	d.DbName = TEXT_DEFAULT_CONNECTION
+}
